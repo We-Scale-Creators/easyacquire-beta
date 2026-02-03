@@ -1,0 +1,727 @@
+@import "tailwindcss";
+
+/* =============================================
+   EASYACQUIRE - DESIGN SYSTEM
+   Ben Kelly / Acquisition Ace Brand
+
+   CRITICAL: Proper spacing throughout
+   ============================================= */
+
+:root {
+  /* Brand Colors */
+  --blue-primary: #4F79FF;
+  --blue-royal: #3C53E4;
+  --navy-deep: #0B1A33;
+  --navy-medium: #0F2341;
+  --navy-light: #162D50;
+  --green-money: #2ECC71;
+  --green-success: #27AE60;
+  --gold-alert: #F39C12;
+  --red-danger: #E74C3C;
+
+  /* Text Colors */
+  --text-white: #FFFFFF;
+  --text-gray-100: #F1F5F9;
+  --text-gray-300: #CBD5E1;
+  --text-gray-400: #94A3B8;
+  --text-gray-500: #64748B;
+  --text-gray-600: #475569;
+
+  /* LAYOUT - CRITICAL MEASUREMENTS */
+  --sidebar-width: 260px;
+  --header-height: 72px;
+  --content-padding: 32px;
+  --card-padding: 24px;
+  --gap-sm: 12px;
+  --gap-md: 20px;
+  --gap-lg: 32px;
+  --gap-xl: 48px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 30px rgba(79, 121, 255, 0.2);
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--navy-deep);
+  color: var(--text-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =============================================
+   LAYOUT STRUCTURE
+   ============================================= */
+
+/* Sidebar - Fixed Left */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--navy-medium);
+  border-right: 1px solid rgba(79, 121, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+/* Header - Fixed Top (offset by sidebar) */
+.header {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: var(--header-height);
+  background: rgba(15, 35, 65, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(79, 121, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--content-padding);
+  z-index: 90;
+}
+
+/* Main Content Area */
+.main-content {
+  margin-left: var(--sidebar-width);
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
+  padding: var(--content-padding);
+}
+
+/* =============================================
+   CARDS - Generous Padding
+   ============================================= */
+
+.card {
+  background: var(--navy-light);
+  border: 1px solid rgba(79, 121, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-card);
+}
+
+.card-hover {
+  transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+  border-color: rgba(79, 121, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+/* Glass Card - Used throughout dashboard */
+.glass-card-static {
+  background: rgba(15, 35, 65, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(79, 121, 255, 0.15);
+  border-radius: var(--radius-lg);
+}
+
+/* Stat Cards */
+.stat-card {
+  background: var(--navy-light);
+  border: 1px solid rgba(79, 121, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: var(--card-padding);
+  min-width: 200px;
+}
+
+.stat-card .stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--gap-md);
+}
+
+.stat-card .stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.stat-card .stat-label {
+  font-size: 14px;
+  color: var(--text-gray-400);
+}
+
+/* =============================================
+   FORMS - Proper Input Spacing
+   ============================================= */
+
+.form-group {
+  margin-bottom: var(--gap-md);
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-gray-300);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 16px;
+  color: var(--text-white);
+  background: var(--navy-deep);
+  border: 2px solid rgba(79, 121, 255, 0.2);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-input::placeholder {
+  color: var(--text-gray-500);
+}
+
+.form-input:focus {
+  border-color: var(--blue-primary);
+  box-shadow: 0 0 0 3px rgba(79, 121, 255, 0.15);
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 16px;
+  color: var(--text-white);
+  background: var(--navy-deep);
+  border: 2px solid rgba(79, 121, 255, 0.2);
+  border-radius: var(--radius-md);
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.2s ease;
+}
+
+.form-textarea:focus {
+  border-color: var(--blue-primary);
+  box-shadow: 0 0 0 3px rgba(79, 121, 255, 0.15);
+}
+
+.form-select {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 16px;
+  color: var(--text-white);
+  background: var(--navy-deep);
+  border: 2px solid rgba(79, 121, 255, 0.2);
+  border-radius: var(--radius-md);
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-select:focus {
+  border-color: var(--blue-primary);
+}
+
+/* =============================================
+   BUTTONS - Proper Sizing
+   ============================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--blue-primary), var(--blue-royal));
+  color: white;
+  box-shadow: 0 4px 15px rgba(79, 121, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 121, 255, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-gray-300);
+  border: 2px solid rgba(79, 121, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(79, 121, 255, 0.1);
+  border-color: var(--blue-primary);
+  color: white;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--green-money), var(--green-success));
+  color: white;
+  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+.btn-lg {
+  padding: 18px 36px;
+  font-size: 18px;
+}
+
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  margin: 4px 12px;
+  color: var(--text-gray-400);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  color: var(--text-white);
+  background: rgba(79, 121, 255, 0.1);
+}
+
+.nav-item.active {
+  color: var(--text-white);
+  background: rgba(79, 121, 255, 0.15);
+  position: relative;
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 32px;
+  background: var(--blue-primary);
+  border-radius: 0 4px 4px 0;
+}
+
+.nav-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* =============================================
+   KANBAN BOARD
+   ============================================= */
+
+.kanban-container {
+  display: flex;
+  gap: var(--gap-lg);
+  overflow-x: auto;
+  padding-bottom: var(--gap-md);
+}
+
+.kanban-column {
+  flex-shrink: 0;
+  width: 320px;
+  background: rgba(15, 35, 65, 0.5);
+  border-radius: var(--radius-lg);
+  padding: var(--gap-md);
+}
+
+.kanban-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--gap-md);
+  padding-bottom: var(--gap-sm);
+  border-bottom: 1px solid rgba(79, 121, 255, 0.1);
+}
+
+.kanban-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.kanban-count {
+  background: rgba(79, 121, 255, 0.2);
+  color: var(--blue-primary);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.kanban-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  min-height: 200px;
+}
+
+.kanban-card {
+  background: var(--navy-light);
+  border: 1px solid rgba(79, 121, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  cursor: grab;
+  transition: all 0.2s ease;
+}
+
+.kanban-card:hover {
+  border-color: rgba(79, 121, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* =============================================
+   GRID LAYOUTS
+   ============================================= */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-lg);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-lg);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-lg);
+}
+
+@media (max-width: 1200px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================
+   TYPOGRAPHY
+   ============================================= */
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-gray-400);
+  margin-bottom: var(--gap-lg);
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: var(--gap-md);
+}
+
+.text-sm {
+  font-size: 14px;
+}
+
+.text-xs {
+  font-size: 12px;
+}
+
+.text-muted {
+  color: var(--text-gray-400);
+}
+
+.text-primary {
+  color: var(--blue-primary);
+}
+
+.text-success {
+  color: var(--green-money);
+}
+
+.text-warning {
+  color: var(--gold-alert);
+}
+
+.text-danger {
+  color: var(--red-danger);
+}
+
+/* =============================================
+   BADGES
+   ============================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+}
+
+.badge-primary {
+  background: rgba(79, 121, 255, 0.15);
+  color: var(--blue-primary);
+}
+
+.badge-success {
+  background: rgba(46, 204, 113, 0.15);
+  color: var(--green-money);
+}
+
+.badge-warning {
+  background: rgba(243, 156, 18, 0.15);
+  color: var(--gold-alert);
+}
+
+.badge-danger {
+  background: rgba(231, 76, 60, 0.15);
+  color: var(--red-danger);
+}
+
+/* =============================================
+   AI COACH CHAT WIDGET
+   ============================================= */
+
+.ai-coach-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--blue-primary), var(--blue-royal));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(79, 121, 255, 0.4);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.ai-coach-trigger:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(79, 121, 255, 0.5);
+}
+
+.ai-coach-panel {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 380px;
+  height: 500px;
+  background: var(--navy-medium);
+  border: 1px solid rgba(79, 121, 255, 0.2);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ai-coach-header {
+  padding: 20px;
+  background: var(--navy-light);
+  border-bottom: 1px solid rgba(79, 121, 255, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ai-coach-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.ai-coach-input-area {
+  padding: 16px;
+  border-top: 1px solid rgba(79, 121, 255, 0.15);
+  display: flex;
+  gap: 12px;
+}
+
+/* =============================================
+   UTILITY CLASSES
+   ============================================= */
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-sm {
+  gap: var(--gap-sm);
+}
+
+.gap-md {
+  gap: var(--gap-md);
+}
+
+.gap-lg {
+  gap: var(--gap-lg);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.mb-sm {
+  margin-bottom: var(--gap-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--gap-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--gap-lg);
+}
+
+.mt-lg {
+  margin-top: var(--gap-lg);
+}
+
+/* =============================================
+   SCROLLBAR
+   ============================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navy-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--navy-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-primary);
+}
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease forwards;
+}
